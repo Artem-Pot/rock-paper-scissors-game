@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/ico.ico">
+    <title>Камень ножницы бумага</title>
+</head>
+<body>
+    <div class="container">
+        <section class="page__1">
+            <div class="page__1_wrapper">
+                <span>Камень ножницы бумага</span>
+                <img src="img/logo.svg" alt="Игра камень ножницы бумаги">
+                <button type="button" class="button__start" id="button__start">Начать игру</button>
+            </div>
+        </section>
+
+        <section class="page__2 active">
+            <div class="page__2_wrapper">
+                <div class="page__2_score">
+                    <div class="">Счет игрока:
+                        <span class="page__2_score-user"></span>
+                    </div>
+                    <div class="page__2_score-game">Игра <span class="page__2_score-game1"></span> из <span class="page__2_score-game2"></span></div>
+                    <div class="">Счет компьютера:
+                        <span class="page__2_score-computer"></span>
+                    </div>
+                </div>
+
+                <div class="page__2_box-img">
+                    <div class="page__2_box-img-user"></div>
+                    <div class="page__2_box-img-comp"></div>
+                </div>
+
+                <div class="page__2_gesture">
+                    <span>Выбери знак чтобы начать игру</span>
+                    <div class="page__2_gesture-user">
+                        <div class="page__2_gesture-title">
+                            <button class="button__gesture button__stone" id="button__stone"></button>
+                            <span>Камень</span>
+                        </div>
+
+                        <div class="page__2_gesture-title">
+                            <button class="button__gesture button__scissors" id="button__scissors"></button>
+                            <span>Ножницы</span>
+                        </div>
+
+                        <div class="page__2_gesture-title">
+                            <button class="button__gesture button__paper" id="button__paper"></button>
+                            <span>Бумага</span>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <script src="scripts/scripts.js"></script>
+</body>
+</html>
