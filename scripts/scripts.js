@@ -22,65 +22,154 @@ const arr = ['камень','ножницы','бумага'];
 
 
 //функция рандомного выбора компьютера
-function random() {
-    return Number(Math.floor(Math.random() * 3));
+function random(min, max) {
+    // return Number(Math.floor(Math.random() * 3));
+    let rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
 }
 
 //прослушка события нажатия на камень
 buttonStone.addEventListener("click", function () {
-    switch (random()) {
+    switch (random(0, 2)) {
         case 0:
-            console.log(`ничья  - ${random()}`);
+            console.log(`ничья`);
+            userGesture.style =  `background: url(../img/1.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            `;
+            compGesture.style = `background: url(../img/1.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            transform: scale(-1, 1);`;
           break; 
         case 1:
-            console.log(`пользователь победил  - ${random()}`);
+            console.log(`пользователь победил`);
             scoreUser.textContent = Number(scoreUser.textContent) + 1;
+            userGesture.style =  `background: url(../img/1.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            `;
+            compGesture.style = `background: url(../img/2.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            transform: scale(-1, 1);`;
           break; 
         case 2:
-            console.log(`пользователь проиграл  - ${random()}`);
+            console.log(`пользователь проиграл`);
             scoreComputer.textContent = Number(scoreComputer.textContent) + 1;
+            userGesture.style =  `background: url(../img/1.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            `;
+            compGesture.style = `background: url(../img/3.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            transform: scale(1, 1);`;
           break;
-        default:
-            console.log(`что то не так`);
     }
 })
 
 //прослушка события нажатия на ножницы
 buttonScissors.addEventListener("click", function () {
-    switch (random()) {
-        case +0:
-            console.log(`пользователь проиграл - ${random()}`);
+    switch (random(0, 2)) {
+        case 0:
+            console.log(`пользователь проиграл`);
             scoreComputer.textContent = Number(scoreComputer.textContent) + 1;
+            userGesture.style =  `background: url(../img/2.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            `;
+            compGesture.style = `background: url(../img/1.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            transform: scale(-1, 1);`;
           break; 
-        case +1:
-            console.log(`ничья - ${random()}`);
+        case 1:
+            console.log(`ничья`);
+            userGesture.style =  `background: url(../img/2.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            `;
+            compGesture.style = `background: url(../img/2.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            transform: scale(-1, 1);`;
           break; 
-        case +2:
-            console.log(`пользователь победил - ${random()}`);
+        case 2:
+            console.log(`пользователь победил`);
             scoreUser.textContent = Number(scoreUser.textContent) + 1;
+            userGesture.style =  `background: url(../img/2.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            `;
+            compGesture.style = `background: url(../img/3.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            transform: scale(1, 1);`;
           break; 
-        default:
-            console.log(`что то не так`);
         }
 })
 
 // //прослушка события нажатия на бумагу
 buttonPaper.addEventListener("click", function () {
-    switch (random()) {
+    switch (random(0, 2)) {
         case 0:
-            console.log(`пользователь победил - ${random()}`);
+            console.log(`пользователь победил`);
             scoreUser.textContent = Number(scoreUser.textContent) + 1;
+            scoreComputer.textContent = Number(scoreComputer.textContent) + 1;
+            userGesture.style =  `background: url(../img/3.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            transform: scale(-1, 1);
+            `;
+            compGesture.style = `background: url(../img/1.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            transform: scale(-1, 1);`;
           break; 
         case 1:
-            console.log(`пользователь проиграл - ${random()}`);
+            console.log(`пользователь проиграл`);
             scoreComputer.textContent = Number(scoreComputer.textContent) + 1;
+            userGesture.style =  `background: url(../img/3.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            transform: scale(-1, 1);
+            `;
+            compGesture.style = `background: url(../img/2.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            transform: scale(-1, 1);`;
           break; 
         case 2:
-            console.log(`ничья - ${random()}`);
+            console.log(`ничья`);
+            userGesture.style =  `background: url(../img/3.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            transform: scale(-1, 1);
+            `;
+            compGesture.style = `background: url(../img/3.jpg) no-repeat center center;
+            width: 500px;
+            height: 300px;
+            background-size: 500px 300px;
+            transform: scale(1, 1);`;
           break; 
-        default:
-            console.log(`что то не так`);
-
     }
 })
 //объединить когда победил ,проиграл и ничья
