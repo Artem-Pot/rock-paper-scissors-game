@@ -59,7 +59,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 /*===================*/
 body {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-family:'Trebuchet MS', sans-serif
 }
 
 .container {
@@ -69,7 +69,7 @@ body {
 .page__1 {
     position: absolute;
     top: calc(50% - 250px);
-    right: calc(50% - 250px);
+    right: calc(50% - 360px);
     display: none;
 }
 
@@ -111,7 +111,7 @@ body {
 
 /* страница игры*/
 .page__2 {
-     
+     display: none;;
 }
 
 .page__2_wrapper {
@@ -146,18 +146,32 @@ body {
 }
 
 .page__2_box-img{
+    position: relative;
     display: flex;
     align-items: center;
     gap: 120px;
     flex: 1 1 auto;
 }
 
+.page__2_box-img span {
+    position: absolute;
+    top:5%;
+    left: calc(50% - 125px);
+    width: 250px;
+    font-size: 40px;
+    opacity: 0.5;
+    z-index: 1;
+    text-align: center;
+}
+
 .page__2_box-img-user {
-    background: url(../img/4.png) no-repeat center center;
+    background: url(../img/5.png) no-repeat center center;
     width: 400px;
     height: 300px;
     background-size: 400px 300px;
-    transform: scale(-1, 1);
+    animation-duration: 1s;
+    animation-name: anim;
+    animation-iteration-count: infinite;
 }
 
 .page__2_box-img-comp {
@@ -165,8 +179,38 @@ body {
     width: 400px;
     height: 300px;
     background-size: 400px 300px;
-    
+    animation-duration: 1s;
+    animation-name: anim-2;
+    animation-iteration-count: infinite;
 }
+
+@keyframes anim {
+    0% {
+        transform-origin: bottom left;
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(20deg);
+      }
+    100% {
+        transform-origin: bottom left;
+        transform: rotate(0deg) ;
+      }
+  }
+
+@keyframes anim-2 {
+    0% {
+        transform-origin: bottom right;
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-20deg);
+      }
+    100% {
+        transform-origin: bottom right;
+        transform: rotate(0deg);
+      }
+  }
 
 .page__2_gesture {
     display: flex;
@@ -202,22 +246,23 @@ body {
 }
 
 .button__gesture:hover {
-    outline: 2px solid rgb(173, 156, 156);
+    background-color: rgb(236, 230, 220);
+    border-radius: 20px;
 }
 
 .button__stone {
     background: url(../img/1.png) no-repeat center center;
-    background-size: 200px;
+    background-size: 150px;
 }
 
 .button__scissors {
     background: url(../img/2.png) no-repeat center center;
-    background-size: 200px;
+    background-size: 150px;
 }
 
 .button__paper {
     background: url(../img/3.png) no-repeat center center;
-    background-size: 200px;
+    background-size: 150px;
 }
 
 .active {
