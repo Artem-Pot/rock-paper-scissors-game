@@ -62,10 +62,6 @@ body {
     font-family:'Trebuchet MS', sans-serif
 }
 
-.container {
-
-}
-
 .page__1 {
     position: absolute;
     top: calc(50% - 250px);
@@ -133,18 +129,6 @@ body {
     font-size: 20px;
 }
 
-.page__2_score-user {
-
-}
-
-.page__2_score-game {
-
-}
-
-.page__2_score-computer {
-
-}
-
 .page__2_box-img{
     position: relative;
     display: flex;
@@ -156,8 +140,8 @@ body {
 .page__2_box-img span {
     position: absolute;
     top:5%;
-    left: calc(50% - 125px);
-    width: 250px;
+    left: calc(50% - 300px);
+    width: 600px;
     font-size: 40px;
     opacity: 0.5;
     z-index: 1;
@@ -221,6 +205,22 @@ body {
 
 .page__2_gesture > span {
     font-size: 30px;
+}
+
+.button__restart {
+    display: block;
+    font-size: 20px;
+    width: 200px;
+    height: 50px;
+    background-color: rgb(138, 138, 184);
+    cursor: pointer;
+    color: rgb(226, 230, 233);
+    border-radius: 4px;
+    display: none;
+}
+
+.button__restart:hover {
+    background-color: rgb(124, 124, 201);
 }
 
 .page__2_gesture-user {
