@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <section class="page__1 active">
+        <section class="page__1">
             <div class="page__1_wrapper">
                 <span>Камень, ножницы, бумага</span>
                 <img src="img/logo.svg" alt="Игра камень ножницы бумаги">
@@ -17,7 +17,7 @@
             </div>
         </section>
 
-        <section class="page__2">
+        <section class="page__2 active">
             <div class="page__2_wrapper">
                 <div class="page__2_score">
                     <div class="">Побед игрока:
@@ -36,8 +36,10 @@
                 </div>
 
                 <div class="page__2_gesture">
-                    <span>Выбери жест для начала игры</span>
-                    <button class="button__restart" id="button__restart">Играть снова</button>
+                    <div class="page__2_box">
+                        <span>Выбери жест для начала игры</span>
+                        <button class="button__restart" id="button__restart">Играть снова</button>
+                    </div>
                     <div class="page__2_gesture-user">
                         <div class="page__2_gesture-title">
                             <button class="button__gesture button__stone" id="button__stone"></button>
