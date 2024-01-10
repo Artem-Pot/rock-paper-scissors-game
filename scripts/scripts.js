@@ -9,6 +9,8 @@ const scoreGameTotal = document.querySelector('.page__2_score-game2'); //все�
 const userGesture = document.querySelector('.page__2_box-img-user'); //изображение пользователя
 const compGesture = document.querySelector('.page__2_box-img-comp'); //изображение компьютера
 
+
+const startGame = document.querySelector('.page__2_gesture');
 const buttonStone = document.querySelector('#button__stone'); //кнопка камень
 const buttonScissors = document.querySelector('#button__scissors'); //кнопка ножницы
 const buttonPaper = document.querySelector('#button__paper'); //кнопка бумага
@@ -24,35 +26,19 @@ scoreComputer.textContent = 0; //очки компьютера
 scoreGameСheck.textContent = 0; // текущая игра
 scoreGameTotal.textContent = 3; //всего количество игр
 
-let games = false; //переменная игры
-
-//рестарт игры 
-buttonRestart.onclick = () => {
-    scoreUser.textContent = 0; //очки игрока
-    scoreComputer.textContent = 0; //очки компьютера
-    scoreGameСheck.textContent = 0; // текущий раунд
-    scoreGameTotal.textContent = 3; //всего количество раундов
-    buttonStone.disabled = false; //снятие запрета нажатия на кнопку
-    buttonScissors.disabled = false; //снятие запрета нажатия на кнопку
-    buttonPaper.disabled = false; //снятие запрета нажатия на кнопку
-    tittle.textContent = 'Выбери жест для начала игры';
-    tittle.style = ` color: #000; `;
-    buttonRestart.style.display = 'none';
-};
-
 //функция рандомного выбора компьютера
 function random(min, max) {
-      let rand = min + Math.random() * (max + 1 - min);
-      return Math.floor(rand);
+  let rand = min + Math.random() * (max + 1 - min);
+  return Math.floor(rand);
 }
 
 //функция проверки кто победил в игре
 function winner() {
   if (scoreUser.textContent > scoreComputer.textContent) {
-    winnerUser = `Поздравляю, Вы победили со счетом ${scoreUser.textContent} : ${scoreComputer.textContent}`;
+    winnerUser = `Поздравляю, Вы победили в этой игре. Счет  ${scoreUser.textContent} : ${scoreComputer.textContent}`;
   }
   else {
-     winnerUser = `Увы, Вы проиграли со счетом ${scoreUser.textContent} : ${scoreComputer.textContent}`;
+     winnerUser = `Увы, Вы проиграли в этой игре. Счет - ${scoreUser.textContent} : ${scoreComputer.textContent}`;
   }
   buttonRestart.style.display = 'block'; //показать кнопку рестарта
 }
@@ -88,7 +74,6 @@ function startButton() {
 
 //запуск раунда
 function startRound(){
-  document.querySelector('.button__gesture').style.backgroundColor = 'red';
   winGame.textContent = ''; //очистка поля с победителем раунда
   userGesture.style = `background: url(../img/5.png) no-repeat center center;
   width: 400px;
@@ -116,13 +101,27 @@ function stopRound(){
   startButton(); //разблокировка кнопок
 }
 
-//прослушка события нажатия на камень
-buttonStone.addEventListener("click", function () {
+//рестарт раунда
+buttonRestart.onclick = () => {
+  scoreUser.textContent = 0; //очки игрока
+  scoreComputer.textContent = 0; //очки компьютера
+  scoreGameСheck.textContent = 0; // текущий раунд
+  scoreGameTotal.textContent = 3; //всего количество раундов
+  buttonStone.disabled = false; //снятие запрета нажатия на кнопку
+  buttonScissors.disabled = false; //снятие запрета нажатия на кнопку
+  buttonPaper.disabled = false; //снятие запрета нажатия на кнопку
+  tittle.textContent = 'Выбери жест для начала игры';
+  tittle.style = ` color: #000; `;
+  buttonRestart.style.display = 'none';
+};
+
+startGame.onclick = function(e) {
+  e.target.style.backgroundColor = 'red';
+  if(e.target.id === 'button__stone') {
     startRound(); //запуск раунда
     setTimeout(function(){ //запуск игры через 3,5 секунды после нажатия на кнопку
       switch (random(0, 2)) {
         case 0:
-            console.log(`ничья`);
             userGesture.style = `background: url(./img/1.png) no-repeat center center;
             width: 400px;
             height: 250px;
@@ -135,10 +134,10 @@ buttonStone.addEventListener("click", function () {
             background-size: 300px auto;
             transform: scale(-1, 1);
             animation-iteration-count: 0; `;
-            winGame.textContent = `В этом раунде - Ничья`;
+            winGame.textContent = `Ничья в раунде`;
+            e.target.style.backgroundColor = '';
           break;
         case 1:
-            console.log(`пользователь победил`);
             scoreUser.textContent = Number(scoreUser.textContent) + 1;
             scoreGameСheck.textContent++;
             userGesture.style = `background: url(./img/1.png) no-repeat center center;
@@ -153,10 +152,10 @@ buttonStone.addEventListener("click", function () {
             background-size: 400px 200px;
             transform: scale(-1, 1);
             animation-iteration-count: 0; `;
-            winGame.textContent = `В этом раунде - Вы победили`;
+            winGame.textContent = `Победа в раунде`;
+            e.target.style.backgroundColor = '';
           break; 
         case 2:
-            console.log(`пользователь проиграл`);
             scoreComputer.textContent = Number(scoreComputer.textContent) + 1;
             scoreGameСheck.textContent++;
             userGesture.style = `background: url(./img/1.png) no-repeat center center;
@@ -171,20 +170,18 @@ buttonStone.addEventListener("click", function () {
             background-size: 400px auto;
             transform: scale(1, 1);
             animation-iteration-count: 0; `;
-            winGame.textContent = `В этом раунде - Вы проиграли`;
+            winGame.textContent = `Проигрыш в раунде`;
+            e.target.style.backgroundColor = '';
           break;
     }
     numberGames(); //проверка количество раундов
     }, 3500);
-})
-
-// прослушка события нажатия на ножницы
-buttonScissors.addEventListener("click", function () {
+  }
+  if(e.target.id === 'button__scissors') {
     startRound(); //запуск раунда
     setTimeout(function(){ //запуск игры через 3,5 секунды после нажатия на кнопку
     switch (random(0, 2)) {
         case 0:
-            console.log(`пользователь проиграл`);
             scoreComputer.textContent = Number(scoreComputer.textContent) + 1;
             scoreGameСheck.textContent++;
             userGesture.style = `background: url(./img/2.png) no-repeat center center;
@@ -199,10 +196,10 @@ buttonScissors.addEventListener("click", function () {
             background-size: 300px auto;
             transform: scale(-1, 1);
             animation-iteration-count: 0; `;
-            winGame.textContent = `В этом раунде - Вы проиграли`;
+            winGame.textContent = `Проигрыш в раунде`;
+            e.target.style.backgroundColor = '';
           break; 
         case 1:
-            console.log(`ничья`);
             userGesture.style = `background: url(./img/2.png) no-repeat center center;
             width: 400px;
             height: 200px;
@@ -215,10 +212,10 @@ buttonScissors.addEventListener("click", function () {
             background-size: 400px 200px;
             transform: scale(-1, 1);
             animation-iteration-count: 0; `;
-            winGame.textContent = `В этом раунде - Ничья`;
+            winGame.textContent = `Ничья в раунде`;
+            e.target.style.backgroundColor = '';
           break; 
         case 2:
-            console.log(`пользователь победил`);
             scoreUser.textContent = Number(scoreUser.textContent) + 1;
             scoreGameСheck.textContent++;
             userGesture.style = `background: url(./img/2.png) no-repeat center center;
@@ -233,20 +230,18 @@ buttonScissors.addEventListener("click", function () {
             background-size: 400px auto;
             transform: scale(1, 1);
             animation-iteration-count: 0; `;
-            winGame.textContent = `В этом раунде - Вы победили`;
+            winGame.textContent = `Победа в раунде`;
+            e.target.style.backgroundColor = '';
           break; 
         }
 numberGames(); //проверка количество раундов
 }, 3500);
-})
-
-//прослушка события нажатия на бумагу
-buttonPaper.addEventListener("click", function () {
-     startRound(); //запуск раунда
+  }
+  if(e.target.id === 'button__paper') {
+    startRound(); //запуск раунда
      setTimeout(function(){ //запуск игры через 3,5 секунды после нажатия на кнопку
     switch (random(0, 2)) {
         case 0:
-            console.log(`пользователь победил`);
             scoreUser.textContent = Number(scoreUser.textContent) + 1;
             scoreGameСheck.textContent++;
             userGesture.style = `background: url(./img/3.png) no-repeat center center;
@@ -261,10 +256,10 @@ buttonPaper.addEventListener("click", function () {
             background-size: 300px auto;
             transform: scale(-1, 1);
             animation-iteration-count: 0; `;
-            winGame.textContent = `В этом раунде - Вы победили`;
+            winGame.textContent = `Победа в раунде`;
+            e.target.style.backgroundColor = '';
           break; 
         case 1:
-            console.log(`пользователь проиграл`);
             scoreComputer.textContent = Number(scoreComputer.textContent) + 1;
             scoreGameСheck.textContent++;
             userGesture.style =  `background: url(./img/3.png) no-repeat center center;
@@ -279,10 +274,10 @@ buttonPaper.addEventListener("click", function () {
             background-size: 400px 200px;
             transform: scale(-1, 1);
             animation-iteration-count: 0; `;
-            winGame.textContent = `В этом раунде - Вы проиграли`;
+            winGame.textContent = `Проигрыш в раунде`;
+            e.target.style.backgroundColor = '';
           break; 
         case 2:
-            console.log(`ничья`);
             userGesture.style = `background: url(./img/3.png) no-repeat center center;
             width: 400px;
             height: 200px;
@@ -295,16 +290,21 @@ buttonPaper.addEventListener("click", function () {
             background-size: 400px auto;
             transform: scale(1, 1); 
             animation-iteration-count: 0; `;
-            winGame.textContent = `В этом раунде - Ничья`;
+            winGame.textContent = `Ничья в раунде`;
+            e.target.style.backgroundColor = '';
           break; 
     }
 numberGames(); //проверка количество раундов
 }, 3500);
-})
+  }
+}
 
-//убрать косяки с большим количеством раундов чем должно быть (необходимо после последнего раунда выходить а не давать нажимать на кнопку и сразу писать кто победил)
+
+
+
+
 //добавить анимацию, чтобы пользователь выбирал кнопки после раунда
-//убоать фразу выбрать жест когда идет раунд
+//убрать фразу выбрать жест когда идет раунд
 //для красной кнопки добавить через event.target иначе будет только для первой кнопки
 
 //Логика игры с таймерами:
