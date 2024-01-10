@@ -54,7 +54,9 @@ function numberGames(){
     tittle.textContent = winnerUser; //вывод сообщения кто победил в игре
   }
   else {
+    tittle.textContent = 'Выбери жест для начала игры';
     return;
+
   }
 }
 
@@ -75,14 +77,15 @@ function startButton() {
 //запуск раунда
 function startRound(){
   winGame.textContent = ''; //очистка поля с победителем раунда
-  userGesture.style = `background: url(../img/5.png) no-repeat center center;
+  tittle.textContent = '';
+  userGesture.style = `background: url(./img/5.png) no-repeat center center;
   width: 400px;
   height: 300px;
   background-size: 400px 300px;
   animation-duration: 1s;
   animation-name: anim;
   animation-iteration-count: infinite;`;
-  compGesture.style = `background: url(../img/4.png) no-repeat center center;
+  compGesture.style = `background: url(./img/4.png) no-repeat center center;
   width: 400px;
   height: 300px;
   background-size: 400px 300px;
@@ -116,8 +119,8 @@ buttonRestart.onclick = () => {
 };
 
 startGame.onclick = function(e) {
-  e.target.style.backgroundColor = 'red';
   if(e.target.id === 'button__stone') {
+    e.target.style.backgroundColor = 'red';
     startRound(); //запуск раунда
     setTimeout(function(){ //запуск игры через 3,5 секунды после нажатия на кнопку
       switch (random(0, 2)) {
@@ -178,6 +181,7 @@ startGame.onclick = function(e) {
     }, 3500);
   }
   if(e.target.id === 'button__scissors') {
+    e.target.style.backgroundColor = 'red';
     startRound(); //запуск раунда
     setTimeout(function(){ //запуск игры через 3,5 секунды после нажатия на кнопку
     switch (random(0, 2)) {
@@ -238,6 +242,7 @@ numberGames(); //проверка количество раундов
 }, 3500);
   }
   if(e.target.id === 'button__paper') {
+    e.target.style.backgroundColor = 'red';
     startRound(); //запуск раунда
      setTimeout(function(){ //запуск игры через 3,5 секунды после нажатия на кнопку
     switch (random(0, 2)) {
