@@ -26,16 +26,11 @@ scoreGameTotal.textContent = 3; //всего количество игр
 
 let games = false; //переменная игры
 
-
 //запуск игры
 // buttonStart.onclick = () => {
 //   document.querySelector('.page__1').classList.remove('active');
 //   document.querySelector('.page__2').classList.add('active');
 // };
-
-setTimeout(function(){
-  
-}, 2000);
 
 //рестарт игры 
 buttonRestart.onclick = () => {
@@ -65,7 +60,7 @@ function winner() {
   else {
      winnerUser = `В этой игре - Вы проиграли. Счет ${scoreUser.textContent} : ${scoreComputer.textContent}`;
   }
-  buttonRestart.style.display = 'block';
+  buttonRestart.style.display = 'block'; //показать кнопку рестарта
 }
 
 //функция запрета играть больше раундов чем задал пользователь
@@ -75,8 +70,7 @@ function numberGames(){
     winner();
     tittle.style = `font-weight: bold; 
     color: red; `;
-    tittle.textContent = winnerUser; //вывод сообщения кто победил
-    // console.log(`очков больше: пользователь ${scoreUser.textContent}, компьютер ${scoreComputer.textContent} `);
+    tittle.textContent = winnerUser; //вывод сообщения кто победил в игре
   }
   else {
     return;
@@ -89,6 +83,7 @@ function stopButton() {
   buttonScissors.disabled = true; 
   buttonPaper.disabled = true; 
 }
+
 //разблокировка кнопок 
 function startButton() {
   buttonStone.disabled = false; //снятие запрета нажатия на кнопку
@@ -97,104 +92,112 @@ function startButton() {
 }
 
 //запуск игры
-function startGames(){
-  startButton();
-}
+// function startGames(){
+//   startButton();
+//   document.querySelector('.button__gesture').style.animationName = 'blink';
+// }
 
-//включение и отключение анимации
-function animateHands(animations) {
-  if(animations === 'on') {
-    document.querySelector('.page__2_box-img-user').style.animationName = 'anim';
-    document.querySelector('.page__2_box-img-comp').style.animationName = 'anim-2';
-  }
-  else {
-    document.querySelector('.page__2_box-img-user').style.animationName = '';
-    document.querySelector('.page__2_box-img-comp').style.animationName = '';
-  }
-}
+//включение и отключение анимации рук
+// function animateHands(animations) {
+//   if(animations === 'on') {
+//     document.querySelector('.page__2_box-img-user').style.animationName = 'anim';
+//     document.querySelector('.page__2_box-img-comp').style.animationName = 'anim-2';
+//   }
+//   else {
+//     document.querySelector('.page__2_box-img-user').style.animationName = '';
+//     document.querySelector('.page__2_box-img-comp').style.animationName = '';
+//   }
+// }
 
 //запуск раунда
 function startRound(){
-  animateHands('on');
-  setTimeout(function(){
-    animateHands('');
-  }, 3000);
+  document.querySelector('.button__gesture:hover').style.backgroundColor = 'rgb(127, 134, 236)'; //анимация зажатия кнопки
+  winGame.textContent = ''; //очистка поля с победителем раунда
+  userGesture.style = `background: url(../img/5.png) no-repeat center center;
+  width: 400px;
+  height: 300px;
+  background-size: 400px 300px;
+  animation-duration: 1s;
+  animation-name: anim;
+  animation-iteration-count: infinite;`;
+  compGesture.style = `background: url(../img/4.png) no-repeat center center;
+  width: 400px;
+  height: 300px;
+  background-size: 400px 300px;
+  animation-duration: 1s;
+  animation-name: anim-2;
+  animation-iteration-count: infinite;`;
+  stopButton(); //блокировка кноппок
+  setTimeout(function(){ //запуск остановки раунда через 3,5 секунды
+    stopRound();
+  }, 3500);
 }
 
 //остановка раунда
 function stopRound(){
-  animateHands('');
-}
-
-function test() {
-  switch (random(0, 2)) {
-    case 0:
-        console.log(`ничья`);
-        userGesture.style = `background: url(./img/1.png) no-repeat center center;
-        width: 400px;
-        height: 250px;
-        background-size: 300px auto;
-        transform: scale(1, 1); 
-        animation-iteration-count: 0; `;
-        compGesture.style = `background: url(./img/1.png) no-repeat center center;
-        width: 400px;
-        height: 250px;
-        background-size: 300px auto;
-        transform: scale(-1, 1);
-        animation-iteration-count: 0; `;
-        winGame.textContent = `Итог раунда: Ничья`;
-
-      break;
-    case 1:
-        console.log(`пользователь победил`);
-        scoreUser.textContent = Number(scoreUser.textContent) + 1;
-        scoreGameСheck.textContent++;
-        userGesture.style = `background: url(./img/1.png) no-repeat center center;
-        width: 400px;
-        height: 250px;
-        background-size: 300px auto;
-        transform: scale(1, 1);
-        animation-iteration-count: 0; `;
-        compGesture.style = `background: url(./img/2.png) no-repeat center center;
-        width: 400px;
-        height: 200px;
-        background-size: 400px 200px;
-        transform: scale(-1, 1);
-        animation-iteration-count: 0; `;
-        winGame.textContent = `Итог раунда: Ты победил`;
-
-      break; 
-    case 2:
-        console.log(`пользователь проиграл`);
-        scoreComputer.textContent = Number(scoreComputer.textContent) + 1;
-        scoreGameСheck.textContent++;
-        userGesture.style = `background: url(./img/1.png) no-repeat center center;
-        width: 400px;
-        height: 250px;
-        background-size: 300px auto;
-        transform: scale(1, 1);
-        animation-iteration-count: 0; `;
-        compGesture.style = `background: url(./img/3.png) no-repeat center center;
-        width: 400px;
-        height: 200px;
-        background-size: 400px auto;
-        transform: scale(1, 1);
-        animation-iteration-count: 0; `;
-        winGame.textContent = `Итог раунда: Ты проиграл`;
-
-      break;
-}
+  document.querySelector('.button__gesture').style.backgroundColor = '';
+  startButton(); //разблокировка кнопок
 }
 
 //прослушка события нажатия на камень
 buttonStone.addEventListener("click", function () {
-      startRound();
-      setTimeout(function(){
-        test();
-      }, 3200);
-      
-    // numberGames();
-      
+      startRound(); //запуск раунда
+      setTimeout(function(){ //запуск игры через 3,5 секунды после нажатия на пнопку
+        switch (random(0, 2)) {
+          case 0:
+              console.log(`ничья`);
+              userGesture.style = `background: url(./img/1.png) no-repeat center center;
+              width: 400px;
+              height: 250px;
+              background-size: 300px auto;
+              transform: scale(1, 1); 
+              animation-iteration-count: 0; `;
+              compGesture.style = `background: url(./img/1.png) no-repeat center center;
+              width: 400px;
+              height: 250px;
+              background-size: 300px auto;
+              transform: scale(-1, 1);
+              animation-iteration-count: 0; `;
+              winGame.textContent = `Итог раунда: Ничья`;
+            break;
+          case 1:
+              console.log(`пользователь победил`);
+              scoreUser.textContent = Number(scoreUser.textContent) + 1;
+              scoreGameСheck.textContent++;
+              userGesture.style = `background: url(./img/1.png) no-repeat center center;
+              width: 400px;
+              height: 250px;
+              background-size: 300px auto;
+              transform: scale(1, 1);
+              animation-iteration-count: 0; `;
+              compGesture.style = `background: url(./img/2.png) no-repeat center center;
+              width: 400px;
+              height: 200px;
+              background-size: 400px 200px;
+              transform: scale(-1, 1);
+              animation-iteration-count: 0; `;
+              winGame.textContent = `Итог раунда: Ты победил`;
+            break; 
+          case 2:
+              console.log(`пользователь проиграл`);
+              scoreComputer.textContent = Number(scoreComputer.textContent) + 1;
+              scoreGameСheck.textContent++;
+              userGesture.style = `background: url(./img/1.png) no-repeat center center;
+              width: 400px;
+              height: 250px;
+              background-size: 300px auto;
+              transform: scale(1, 1);
+              animation-iteration-count: 0; `;
+              compGesture.style = `background: url(./img/3.png) no-repeat center center;
+              width: 400px;
+              height: 200px;
+              background-size: 400px auto;
+              transform: scale(1, 1);
+              animation-iteration-count: 0; `;
+              winGame.textContent = `Итог раунда: Ты проиграл`;
+            break;
+      }
+      }, 3500);
 })
 
 // прослушка события нажатия на ножницы
@@ -316,6 +319,7 @@ buttonStone.addEventListener("click", function () {
 // })
 
 //убрать косяки с большим количеством раундов чем должно быть (необходимо после последнего раунда выходить а не давать нажимать на кнопку и сразу писать кто победил)
+//добавить анимацию, чтобы пользователь выбирал кнопки после раунда
 
 //Логика игры с таймерами:
 // Игрок выбирает жест(жест остается подсвеченным), проходит 3 секунды и начинается игра(3 кивка рукой)

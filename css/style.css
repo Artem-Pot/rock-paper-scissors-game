@@ -253,12 +253,24 @@ body {
     width: 200px;
     height: 200px;
     background-size: 100px;
+    border-radius: 20px;
+    animation-duration: 2s;
+    /* animation-name: blink; */
+    animation-iteration-count: infinite;
 }
 
+@keyframes blink {
+    70% { 
+        border: 1px solid red; 
+    }
+
+    100% { 
+        border: 1px solid red; 
+    }
+  }
+
 .button__gesture:hover {
-    background-color: rgb(236, 230, 220);
-    border-radius: 20px;
-    border: 1px solid red;
+    background-color: rgb(127, 134, 236);
 }
 
 .button__stone {
