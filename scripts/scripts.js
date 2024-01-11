@@ -24,7 +24,7 @@ const winGame = document.querySelector('.page__2_box-img span'); //итог ра
 scoreUser.textContent = 0; //очки игрока
 scoreComputer.textContent = 0; //очки компьютера
 scoreGameСheck.textContent = 0; // текущая игра
-scoreGameTotal.textContent = '3'; //всего количество игр (по умолчанию 3)
+scoreGameTotal.textContent = 3; //всего количество игр (по умолчанию 3)
 
 const sample = {
   imgStoneUser: `
@@ -100,9 +100,6 @@ buttonStart.onclick = () => {
   document.querySelector('.page__1').classList.remove('active');
   document.querySelector('.page__2').classList.add('active');
 };
-
-
-
 
 //функция рандомного выбора компьютера
 function random(min, max) {
