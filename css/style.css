@@ -60,13 +60,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 /*===================*/
 body {
-    font-family:'Trebuchet MS', sans-serif
+    font-family:'Trebuchet MS', sans-serif;
+    background-color: rgb(231, 233, 229);
+    max-width: 100vw;
+    max-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.container {
+    
 }
 
 .page__1 {
-    position: absolute;
-    top: calc(50% - 350px);
-    right: calc(50% - 360px);
     display: none;
 }
 
@@ -82,11 +90,12 @@ body {
     font-size: 60px;
     font-weight: 700;
     color: rgb(185, 150, 105);
+    text-align: center;
 }
 
 .page__1_box {
     display: flex;
-    flex-direction: column;
+
     align-items: center;
     gap: 20px;
 }
@@ -94,6 +103,7 @@ body {
 .page__1 span{
     display: block;
     font-size: 25px;
+    
 }
 
 #page__1_input {
@@ -135,7 +145,7 @@ opacity: 1;
 
 /* страница игры*/
 .page__2 {
-     display: none;;
+     display: none;
 }
 
 .page__2_wrapper {
@@ -318,3 +328,49 @@ opacity: 1;
 .active {
     display: block;
 }
+
+/* медиа запросы*/
+/*----------------1000px------------------*/
+@media (max-width: 1000px) {
+    .page__1_wrapper {
+        gap: 20px;
+    }
+    
+    .page__1 h1{
+        font-size: 40px;
+    }
+        
+    .page__1 span{
+        font-size: 20px;
+    }
+    
+    #page__1_input {
+        font-size: 20px;
+        width: 50px;
+        height: 30px;
+    }
+        
+    .page__1 img {
+        width: 200px;
+        height: 200px;
+        background-size: 200px;
+    }
+    
+    .button__start {
+        font-size: 25px;
+    }
+  }
+/*---------------- 576px------------------*/
+  @media (max-width: 576px) {
+    .page__1_wrapper {
+        gap: 20px;
+    }
+    
+    .page__1 h1{
+        font-size: 30px;
+    }
+    
+    .button__start {
+        font-size: 30px;
+    }
+  }
