@@ -65,7 +65,7 @@ body {
 
 .page__1 {
     position: absolute;
-    top: calc(50% - 250px);
+    top: calc(50% - 350px);
     right: calc(50% - 360px);
     display: none;
 }
@@ -77,11 +77,38 @@ body {
     gap: 30px;
 }
 
-.page__1 span{
+.page__1 h1{
     display: block;
     font-size: 60px;
     font-weight: 700;
     color: rgb(185, 150, 105);
+}
+
+.page__1_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.page__1 span{
+    display: block;
+    font-size: 25px;
+}
+
+#page__1_input {
+    font-size: 25px;
+    padding: 5px;
+    width: 70px;
+    height: 40px;
+    background-color: rgb(218, 218, 233);
+    border: 1px solid rgb(182, 172, 172);
+    border-radius: 2px;
+}
+
+#page__1_input::-webkit-inner-spin-button,
+#page__1_input::-webkit-outer-spin-button {
+opacity: 1;
 }
 
 .page__1 img {
@@ -96,14 +123,14 @@ body {
     font-size: 20px;
     width: 200px;
     height: 50px;
-    background-color: rgb(138, 138, 184);
+    background-color: rgb(124, 124, 201);
     cursor: pointer;
     color: rgb(226, 230, 233);
     border-radius: 4px;
 }
 
 .button__start:hover {
-    background-color: rgb(124, 124, 201);
+    background-color: rgb(138, 138, 184);
 }
 
 /* страница игры*/
