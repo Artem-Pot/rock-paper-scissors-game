@@ -63,8 +63,7 @@ body {
     font-family: sans-serif;
     background-color: rgb(231, 233, 229);
     width: 100vw;
-    height: 100dvh; 
-    position: fixed;
+    height: 100svh; 
     overflow: hidden;
 }
 
