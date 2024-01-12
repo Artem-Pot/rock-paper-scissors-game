@@ -65,11 +65,9 @@ const sample = {
   `,
   imgHandUser: `
   background: url(./img/5.png) no-repeat center center;
-  background-size: contain;
   `, //изображение руки пользователя
   imgHandComp: `
   background: url(./img/4.png) no-repeat center center;
-  background-size: contain;
   `, //изображение руки компьютера
 };
 
