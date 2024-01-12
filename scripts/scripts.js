@@ -29,63 +29,47 @@ scoreGameTotal.textContent = 3; //всего количество игр (по �
 const sample = {
   imgStoneUser: `
   background: url(./img/1.png) no-repeat center center;
-  width: 400px;
-  height: 250px;
-  background-size: 300px auto;
-  transform: scale(1, 1); 
+  background-size: contain;
+  transform: scale(1, 1);
   animation-iteration-count: 0;
   `,
   imgStoneComp: `
   background: url(./img/1.png) no-repeat center center;
-  width: 400px;
-  height: 250px;
-  background-size: 300px auto;
+  background-size: contain;
   transform: scale(-1, 1);
   animation-iteration-count: 0;
   `,
   imgScissorsUser: `
   background: url(./img/2.png) no-repeat center center;
-  width: 400px;
-  height: 200px;
-  background-size: 400px 200px;
+  background-size: contain;
   transform: scale(1, 1); 
   animation-iteration-count: 0;
   `,
   imgScissorsComp: `
   background: url(./img/2.png) no-repeat center center;
-  width: 400px;
-  height: 200px;
-  background-size: 400px 200px;
+  background-size: contain;
   transform: scale(-1, 1);
   animation-iteration-count: 0;
   `,
   imgPaperUser: `
   background: url(./img/3.png) no-repeat center center;
-  width: 400px;
-  height: 200px;
-  background-size: 400px auto;
+  background-size: contain;
   transform: scale(-1, 1); 
   animation-iteration-count: 0; 
   `,
   imgPaperComp: `
   background: url(./img/3.png) no-repeat center center;
-  width: 400px;
-  height: 200px;
-  background-size: 400px auto;
+  background-size: contain;
   transform: scale(1, 1);
   animation-iteration-count: 0;
   `,
   imgHandUser: `
   background: url(./img/5.png) no-repeat center center;
-  width: 400px;
-  height: 300px;
-  background-size: 400px 300px;
+  background-size: contain;
   `, //изображение руки пользователя
   imgHandComp: `
   background: url(./img/4.png) no-repeat center center;
-  width: 400px;
-  height: 300px;
-  background-size: 400px 300px;
+  background-size: contain;
   `, //изображение руки компьютера
 };
 
@@ -124,10 +108,10 @@ function numberGames(){
 //функция проверки кто победил в игре
 function winner() {
   if (scoreUser.textContent > scoreComputer.textContent) {
-    winnerUser = `Поздравляю, Вы победили в этой игре. Счет  ${scoreUser.textContent} : ${scoreComputer.textContent}`;
+    winnerUser = `Вы победили в игре. Счет  ${scoreUser.textContent} : ${scoreComputer.textContent}`;
   }
   else {
-    winnerUser = `Увы, Вы проиграли в этой игре. Счет - ${scoreUser.textContent} : ${scoreComputer.textContent}`;
+    winnerUser = `Вы проиграли в игре. Счет - ${scoreUser.textContent} : ${scoreComputer.textContent}`;
   }
   buttonRestart.style.display = 'block'; //показать кнопку рестарта
 }
@@ -283,4 +267,5 @@ startGame.onclick = (e) => {
 //вместо большого количество кода стилей - добавлять или отнимать классы стилей
 //разбить код на модули
 //переименовать классы и id, по БЭМ
+//добавить префиксы
 
