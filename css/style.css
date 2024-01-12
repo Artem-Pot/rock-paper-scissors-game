@@ -64,7 +64,7 @@ body {
     background-color: rgb(231, 233, 229);
     width: 100vw;
     height: 100svh; 
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .container {
