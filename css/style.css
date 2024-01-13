@@ -433,14 +433,16 @@ opacity: 1;
     .button__start {
         font-size: 30px;
     }
-  
+   
     .page__2_score {
         height: 60px;
         font-size: 16px;
-    }
+    } 
 
     .page__2_box-img span{
-        font-size: 28px;
+        font-size: 18px;
+        width: 300px;
+        left: calc(50% - 150px);
     }
 
     .page__2_box > span {
