@@ -493,7 +493,7 @@ opacity: 1;
     }
 }
 
-@media (hover: none) and (pointer: coarse) {
+@media (hover: hover) and (pointer: fine) {
     .button__gesture:hover {
         background-color: red;
         pointer-events: none;
