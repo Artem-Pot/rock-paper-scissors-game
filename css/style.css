@@ -371,6 +371,11 @@ opacity: 1;
         font-size: 25px;
     }
 
+    .page__2_wrapper {
+        height: 100dvh; 
+        width: 100%;
+    }
+
     .page__2_box {
         display: flex;
         flex-wrap:nowrap;
