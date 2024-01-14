@@ -487,3 +487,13 @@ opacity: 1;
         background-size: 90px;
     }
 }
+
+@media (hover: none) and (pointer: coarse) {
+    .button__gesture:hover {
+        background-color: red;
+        pointer-events: none;
+    }
+    .page__2_score {
+        background-color: chartreuse;
+    }
+}
