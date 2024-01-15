@@ -1,10 +1,9 @@
 const buttonStart = document.querySelector('#button__start'); //кнопка запуска игры на 1 странице
-const buttonNumberGames = document.querySelector('#page__1_input'); //выбор количества раундов на 1 странице
+const buttonNumberGames = document.querySelector('#page__1_input'); //выбор количества побед на 1 странице
 const buttonRestart = document.querySelector('#button__restart'); //кнопка перезапуска игры 2 страницы
 
 const scoreUser = document.querySelector('.page__2_score-user'); //счет пользователя
 const scoreComputer = document.querySelector('.page__2_score-computer'); //счет компьютера
-const scoreGameСheck = document.querySelector('.page__2_score-game1'); //какая по счету игра
 const scoreGameTotal = document.querySelector('.page__2_score-game2'); //всего играть игр
 
 const userGesture = document.querySelector('.page__2_box-img-user'); //изображение пользователя
@@ -20,11 +19,10 @@ const button = document.querySelector('.page__2_gesture-user'); //блок с к
 
 let winnerUser = ''; //переменная - кто победил
 const winGame = document.querySelector('.page__2_box-img span'); //итог раунда
-
+//стартовые значения игры
 scoreUser.textContent = 0; //очки игрока
 scoreComputer.textContent = 0; //очки компьютера
-scoreGameСheck.textContent = 0; // текущая игра
-scoreGameTotal.textContent = 3; //всего количество игр (по умолчанию 3)
+scoreGameTotal.textContent = buttonNumberGames.value; //всего количество побед (по умолчанию 3)
 
 const sample = {
   imgStoneUser: `
@@ -73,16 +71,16 @@ const sample = {
   `, //изображение руки компьютера
 };
 
-//установка количества раундов для игры, 1 страница
-buttonNumberGames.onblur = function() { // вызов функци при потере фокуса
+//установка количество побед в игре<, 1 страница
+buttonNumberGames.onblur = function() { // вызов функции при потере фокуса
   buttonNumberGames.value;
-  scoreGameTotal.textContent = buttonNumberGames.value;
   }
 
 //начало игры 1 страница
 buttonStart.onclick = () => {
   document.querySelector('.page__1').classList.remove('active');
   document.querySelector('.page__2').classList.add('active');
+  soundStart.play();
 };
 
 //функция рандомного выбора компьютера
@@ -91,14 +89,16 @@ function random(min, max) {
   return Math.floor(rand);
 }
 
-//Проверка кол-ва сыгранных раундов
+//Проверка сколько побед в раунде
 function numberGames(){
-  if (scoreGameСheck.textContent >= scoreGameTotal.textContent) { //если кол-во раундов больше
+  if (buttonNumberGames.value === scoreUser.textContent || buttonNumberGames.value === scoreComputer.textContent) { //если кол-во раундов больше
     stopButton(); //блокировка кнопок
     winner(); //кто победил в игре
     tittle.style = `font-weight: bold; 
     color: red; `;
     tittle.textContent = winnerUser; //вывод сообщения кто победил в игре
+    soundStart.stop();
+    soundFinish.play();
   }
   else {
     tittle.textContent = 'Выбери жест для начала игры';
@@ -139,7 +139,7 @@ function startRound(){
   stopButton(); //блокировка кнопок
   setTimeout(function(){ //запуск остановки раунда через 3,5 секунды
     stopRound();
-  }, 3500);
+  }, 300);
 }
 
 //остановка раунда
@@ -153,15 +153,31 @@ buttonRestart.onclick = () => {
   startButton(); //разблокировка кнопок
   scoreUser.textContent = 0; //очки игрока
   scoreComputer.textContent = 0; //очки компьютера
-  scoreGameСheck.textContent = 0; // текущий раунд
-  scoreGameTotal.textContent = buttonNumberGames.value; //всего количество раундов
   winGame.textContent = ``; //обнуление кто победил в раунде
   tittle.textContent = 'Выбери жест для начала игры';
   tittle.style.color = '#000';
   buttonRestart.style.display = 'none';
   userGesture.style = sample.imgHandUser;
   compGesture.style = sample.imgHandComp;
+  soundStart.stop();
+  soundStart.play();
 };
+
+// звук при начале игры
+const soundStart = new Audio();
+soundStart.src = './sound/mortal-kombat.mp3';
+soundStart.volume = 0.02;
+
+//функция остановки звука
+HTMLAudioElement.prototype.stop = function() {
+	soundStart.pause();
+	soundStart.currentTime = 0.0;
+}
+
+//звук в конце игры
+const soundFinish = new Audio();
+soundFinish.src = './sound/winner.mp3';
+soundFinish.volume = 0.5;
 
 //проверка кнопок
 startGame.onclick = (e) => {
@@ -178,7 +194,6 @@ startGame.onclick = (e) => {
           break;
         case 1:
             scoreUser.textContent = Number(scoreUser.textContent) + 1;
-            scoreGameСheck.textContent++;
             userGesture.style = sample.imgStoneUser; //пользователь камень
             compGesture.style = sample.imgScissorsComp; //компьютер ножницы
 
@@ -187,7 +202,6 @@ startGame.onclick = (e) => {
           break; 
         case 2:
             scoreComputer.textContent = Number(scoreComputer.textContent) + 1;
-            scoreGameСheck.textContent++;
             userGesture.style = sample.imgStoneUser; //пользователь камень
             compGesture.style = sample.imgPaperComp; //компьютер бумага
             winGame.textContent = `Проигрыш в раунде`;
@@ -195,7 +209,7 @@ startGame.onclick = (e) => {
           break;
     }
     numberGames(); //проверка количество раундов
-    }, 3500);
+    }, 300);
   }
   if(e.target.id === 'button__scissors') { //кнопка ножницы
     e.target.style.backgroundColor = 'red';
@@ -204,7 +218,6 @@ startGame.onclick = (e) => {
     switch (random(0, 2)) {
         case 0:
             scoreComputer.textContent = Number(scoreComputer.textContent) + 1;
-            scoreGameСheck.textContent++;
             userGesture.style = sample.imgScissorsUser; //пользователь ножницы
             compGesture.style = sample.imgStoneComp; //компьютер камень
             winGame.textContent = `Проигрыш в раунде`;
@@ -218,7 +231,6 @@ startGame.onclick = (e) => {
           break; 
         case 2:
             scoreUser.textContent = Number(scoreUser.textContent) + 1;
-            scoreGameСheck.textContent++;
             userGesture.style = sample.imgScissorsUser; //пользователь ножницы
             compGesture.style = sample.imgPaperComp; //компьютер бумага
             winGame.textContent = `Победа в раунде`;
@@ -226,7 +238,7 @@ startGame.onclick = (e) => {
           break; 
         }
     numberGames(); //проверка количество раундов
-    }, 3500);
+    }, 300);
   }
   if(e.target.id === 'button__paper') { //кнопка бумага
     e.target.style.backgroundColor = 'red';
@@ -235,7 +247,6 @@ startGame.onclick = (e) => {
     switch (random(0, 2)) {
         case 0:
             scoreUser.textContent = Number(scoreUser.textContent) + 1;
-            scoreGameСheck.textContent++;
             userGesture.style = sample.imgPaperUser; //пользователь бумага
             compGesture.style = sample.imgStoneComp; //компьютер камень
             winGame.textContent = `Победа в раунде`;
@@ -243,7 +254,6 @@ startGame.onclick = (e) => {
           break; 
         case 1:
             scoreComputer.textContent = Number(scoreComputer.textContent) + 1;
-            scoreGameСheck.textContent++;
             userGesture.style = sample.imgPaperUser; //пользователь бумага
             compGesture.style = sample.imgScissorsComp; //компьютер ножницы
             winGame.textContent = `Проигрыш в раунде`;
@@ -257,13 +267,10 @@ startGame.onclick = (e) => {
           break; 
     }
     numberGames(); //проверка количество раундов
-    }, 3500);
+    }, 300);
   }
 }
 
-//изменить локигу игры ,играть до трёх побед или не играть если и так уже ясно что соперник побеждает (пример:играть 7 игр и при этом у противника уже 4 выигрыша, нет смысла играть играть ещё 3)
 //добавить звуки
-//разбить код на модули
 //переименовать классы и id, по БЭМ
-//добавить префиксы (https://autoprefixer.github.io/ru/)
 
