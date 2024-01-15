@@ -139,7 +139,7 @@ function startRound(){
   stopButton(); //блокировка кнопок
   setTimeout(function(){ //запуск остановки раунда через 3,5 секунды
     stopRound();
-  }, 300);
+  }, 3500);
 }
 
 //остановка раунда
@@ -209,7 +209,7 @@ startGame.onclick = (e) => {
           break;
     }
     numberGames(); //проверка количество раундов
-    }, 300);
+    }, 3500);
   }
   if(e.target.id === 'button__scissors') { //кнопка ножницы
     e.target.style.backgroundColor = 'red';
@@ -238,7 +238,7 @@ startGame.onclick = (e) => {
           break; 
         }
     numberGames(); //проверка количество раундов
-    }, 300);
+    }, 3500);
   }
   if(e.target.id === 'button__paper') { //кнопка бумага
     e.target.style.backgroundColor = 'red';
@@ -267,10 +267,9 @@ startGame.onclick = (e) => {
           break; 
     }
     numberGames(); //проверка количество раундов
-    }, 300);
+    }, 3500);
   }
 }
 
-//добавить звуки
 //переименовать классы и id, по БЭМ
 
